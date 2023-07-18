@@ -1,0 +1,46 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js"></script>
+<script>
+  function sample(arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
+  }
+  async function init() {
+    let yaml = await fetch('transcript.yml').then(r => r.text())
+    // yaml
+    let data = jsyaml.load(yaml)
+    console.log(data)
+    let randomFirst = sample(data.first)
+    document.querySelector('h1').innerText = randomFirst
+    let randomThings = sample(data.things)
+    let randomSecond = sample(data.second)
+    document.querySelector('h2').innerText = randomSecond.replaceAll('{thing}', randomThings).replaceAll('{first}', randomFirst)
+  }
+  init()
+</script>
+<style>
+  body {
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  h1 {
+    font-size: 3em;
+    margin: 0;
+  }
+  h2 {
+    font-size: 2em;
+  }
+  img {
+    width: 90%;
+    margin: 5%;
+    border: 1px solid;
+  }
+</style>
+<div>
+  <!-- <img src="https://cloud-obmlnwtcr-hack-club-bot.vercel.app/0screenshot_2023-07-18_at_10.45.22.png"/> -->
+  <img src="https://picsum.photos/800" />
+  <h1>Success</h1>
+  <hr/>
+  <h2>Capsizing is a state of mind</h2>
+</div>
